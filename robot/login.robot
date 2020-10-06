@@ -1,5 +1,5 @@
 The following are the steps that I would take whilemanually testing the 
-login feature:-
+login features:-
 
 Step 1 - Use a browser such as Chrome to open the link http:127.0.0.1:7272. 
         If all is successful, 
