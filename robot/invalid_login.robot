@@ -1,37 +1,43 @@
 *** Settings ***
-Library    SeleniumLibrary    
+Library    SeleniumLibrary  
+Resource    resource.robot  
 
 *** Variables ***
 ${URL}            http://localhost:7272
-${USERNAME}       demo  
-${PASSWORD}       mode
+${USERNAME_1}       demo 
+${PASSWORD_1}       moed
+${USERNAME_2}       deom 
+${PASSWORD_2}       mode
+${USERNAME_3}       demo 
+${PASSWORD_3}       moed
 
 *** Test Cases ***
 Error Page Should Be Visible After Incorrect Login
     Open Browser To Login Page
-    Enter Username    ${EMPTY}
-    Enter Password    ${SPACE*5}
+    Enter Username    ${USERNAME_1}
+    Enter Password    ${PASSWORD_1}
     Submit Login Form
     Verify That Error Page Is Visible
     [Teardown]    Close Browser
-    
+
+Error Page Should Be Visible After Incorrect Login Again
+    Open Browser To Login Page
+    Enter Username    ${USERNAME_2}
+    Enter Password    ${PASSWORD_2}
+    Submit Login Form
+    Verify That Error Page Is Visible
+    [Teardown]    Close Browser
+
+Error Page Should Be Visible After Incorrect Login Again And Again
+    Open Browser To Login Page
+    Enter Username    ${USERNAME_3}
+    Enter Password    ${PASSWORD_3}
+    Submit Login Form
+    Verify That Error Page Is Visible
+    [Teardown]    Close Browser
+
 *** Keywords ***
-Open Browser To Login Page
-    Open Browser    ${URL}    browser=ff
-    Maximize Browser Window       
-    
-Enter Username
-    [Arguments]    ${USERNAME}  
-    Input Text    id=username_field    ${USERNAME}
-    
-Enter Password
-    [Arguments]    ${PASSWORD}
-    Input Password    id=password_field    ${PASSWORD} 
-    
-Submit Login Form
-    Click Element    id=login_button   
-    
 Verify That Error Page Is Visible
     Page Should Contain    Error Page   
     Location Should Be     ${URL}/error.html
-    Title Should Be        Error Page         
+    Title Should Be        Error Page     
