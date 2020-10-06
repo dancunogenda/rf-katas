@@ -14,11 +14,10 @@ Welcome Page Should Be Visible After Successful Login
     Enter Password
     Submit Login Form
     Verify That Welcome Page Is Visible
-
+    [Teardown]      Close Browser
 *** Keywords ***
 Open Browser To Login Page
-    Open Browser    ${URL}    ${BROWSER}
-    Maximize Browser Window       
+    Open Browser    ${URL}    ${BROWSER}    
     
 Enter Username
     Input Text    id=username_field    ${USERNAME}
