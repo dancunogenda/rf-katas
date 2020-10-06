@@ -2,9 +2,7 @@
 Library    SeleniumLibrary    
 
 *** Variables ***
-${SERVER}         127.0.0.1:7272
-${LOGIN URL}      http://${SERVER}/
-${WELCOME URL}    http://${SERVER}/welcome.html
+${URL}            http://localhost:7272
 ${USERNAME}       demo    
 ${PASSWORD}       mode
 ${BROWSER}        Chrome
@@ -19,7 +17,7 @@ Welcome Page Should Be Visible After Successful Login
 
 *** Keywords ***
 Open Browser To Login Page
-    Open Browser    ${LOGIN URL}    ${BROWSER}
+    Open Browser    ${URL}    ${BROWSER}
     Maximize Browser Window       
     
 Enter Username
@@ -31,11 +29,8 @@ Enter Password
 Submit Login Form
     Click Element    id=login_button    
     
-Login Page Should Be Open
-    Title Should Be    Login Page    
-    
 Verify That Welcome Page Is Visible
     Page Should Contain    Welcome Page    
-    Location Should Be    ${WELCOME URL} 
+    Location Should Be    http://localhost:7272/welcome.html 
     Title Should Be    Welcome Page    
           
